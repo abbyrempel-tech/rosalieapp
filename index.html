@@ -21,8 +21,6 @@
     --gold-bright:#f0c46a;
     --blood:#8f2d2d;
     --blood-bright:#b23f3f;
-    --steel:#9fb0c2;
-    --steel-bright:#c4d2df;
     --violet:#7d5ba6;
     --violet-bright:#9c7bc7;
     --shadow: 0 12px 28px rgba(0,0,0,0.5);
@@ -45,7 +43,7 @@
 
   #app{max-width:520px; margin:0 auto; min-height:100vh; position:relative; display:flex; flex-direction:column; padding-bottom:90px;}
 
-  /* ---------- TOP BAR ---------- */
+  /* TOP BAR */
   .topbar{
     background: linear-gradient(180deg, #1e1836 0%, #150f26 100%);
     border-bottom:1px solid var(--panel-line-strong);
@@ -65,11 +63,6 @@
   .hero-text{min-width:0;}
   .hero-name{font-size:15px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-family:'Cinzel',serif; letter-spacing:.02em;}
   .hero-rank{font-size:11px; letter-spacing:.05em; color:var(--gold-bright); font-family:'Cinzel', serif; text-transform:uppercase;}
-  .icon-btn{
-    width:36px;height:36px;border-radius:8px;border:1px solid var(--panel-line-strong);
-    background:var(--panel); color:var(--parchment); display:flex;align-items:center;justify-content:center;
-    font-size:17px; cursor:pointer; flex:none;
-  }
 
   .xp-row{margin-top:10px;}
   .xp-labels{display:flex; justify-content:space-between; font-size:10.5px; color:#a99bd6; margin-bottom:4px; font-family:'IBM Plex Mono',monospace;}
@@ -87,7 +80,7 @@
   .pill.valor .pv{color:var(--blood-bright);}
   .pill.reb .pv{color:var(--violet-bright);}
 
-  /* ---------- MAIN VIEWS ---------- */
+  /* MAIN VIEWS */
   main{flex:1; padding:14px 14px 16px;}
   .view{display:none; animation:fadeIn .25s ease;}
   .view.active{display:block;}
@@ -108,23 +101,13 @@
   .npc-head{display:flex; align-items:center; gap:8px; margin-bottom:7px;}
   .npc-avatar{
     width:30px;height:30px;border-radius:6px; display:flex; align-items:center;justify-content:center;
-    font-size:15px; flex:none; border:1px solid #8a6c1f;
+    font-size:15px; flex:none; border:1px solid #8a6c1f; background:rgba(143,45,45,0.18);
   }
-  .npc-avatar.mentor{background:rgba(143,45,45,0.18);}
   .npc-name{font-size:13px; font-weight:600; font-family:'Cinzel',serif;}
   .npc-role{font-size:9.5px; color:var(--ink-soft); font-family:'IBM Plex Mono',monospace;}
   .npc-line{font-family:'EB Garamond', serif; font-style:italic; font-size:14.5px; line-height:1.5;}
 
-  .btn{
-    border:none; border-radius:8px; font-family:'Cinzel',serif; font-weight:600; cursor:pointer;
-    padding:10px 14px; font-size:12px; letter-spacing:.02em; transition:transform .1s ease; text-transform:uppercase;
-  }
-  .btn:active{transform:scale(0.95);}
-  .btn-gold{background:linear-gradient(180deg,var(--gold-bright),var(--gold)); color:#2b2013;}
-  .btn-violet{background:linear-gradient(180deg,var(--violet-bright),var(--violet)); color:#1c1330;}
-  .btn-block{width:100%; display:block; text-align:center;}
-
-  /* Tasks / Conditioning */
+  /* Tasks / Training */
   .block-banner{
     display:flex; align-items:center; justify-content:space-between; background:var(--panel);
     border:1px solid var(--panel-line); border-radius:10px; padding:10px 12px; margin-bottom:12px;
@@ -137,7 +120,12 @@
     flex:1; background:var(--panel); border:1px solid var(--panel-line-strong); border-radius:8px;
     color:var(--parchment); padding:10px; font-family:'IBM Plex Mono',monospace; font-size:12.5px;
   }
-  
+  .btn{
+    border:none; border-radius:8px; font-family:'Cinzel',serif; font-weight:600; cursor:pointer;
+    padding:10px 14px; font-size:12px; letter-spacing:.02em; text-transform:uppercase;
+  }
+  .btn-gold{background:linear-gradient(180deg,var(--gold-bright),var(--gold)); color:#2b2013;}
+
   .task-item{
     display:flex; align-items:flex-start; gap:10px; background:var(--panel); border:1px solid var(--panel-line);
     border-radius:10px; padding:11px 12px; margin-bottom:8px; transition:background .2s;
@@ -150,7 +138,6 @@
   .task-item.done .chk{background:var(--violet); border-color:var(--violet); color:#1c1330;}
   .task-text{font-size:13.5px; line-height:1.4; font-family:'IBM Plex Mono',monospace; flex:1; cursor:pointer;}
   .task-item.done .task-text{color:#8f86ad; text-decoration:line-through;}
-  .task-tag{font-size:9.5px; font-family:'IBM Plex Mono',monospace; color:#8b83a8; margin-top:3px;}
 
   /* World Map */
   .map-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
@@ -188,7 +175,6 @@
     transition:opacity .3s, transform .3s; pointer-events:none; font-family:'IBM Plex Mono',monospace; white-space:nowrap;
   }
   .toast.show{opacity:1; transform:translateX(-50%) translateY(-6px);}
-  .empty-note{font-size:12px; color:#6f6790; text-align:center; padding:18px 8px; font-family:'IBM Plex Mono',monospace;}
 </style>
 </head>
 <body>
@@ -221,21 +207,21 @@
 
     <!-- QUEST LOG -->
     <section class="view active" id="view-board">
-      <div class="section-title">Quest Log & Briefing</div>
+      <div class="section-title">Ashfall Realm Briefing</div>
       <div class="npc-card">
         <div class="npc-head">
-          <div class="npc-avatar mentor">⚔️</div>
+          <div class="npc-avatar">⚔️</div>
           <div><div class="npc-name">The Harsh Mentor</div><div class="npc-role">TRIAL OVERSEER</div></div>
         </div>
-        <div class="npc-line" id="mentorLine">Welcome to the Ashfall Realm, Rosalie. Complete your daily training blocks to grow stronger.</div>
+        <div class="npc-line" id="mentorLine">The trial grounds await, Rosalie. Complete your training blocks to survive the arena.</div>
       </div>
 
-      <div class="section-title">How to Play & Earn Points</div>
+      <div class="section-title">Points & Progression Guide</div>
       <div style="font-size: 13px; font-family: 'IBM Plex Mono', monospace; line-height: 1.5; background: var(--panel); padding: 12px; border-radius: 10px; border: 1px solid var(--panel-line);">
         ✨ <strong>XP:</strong> Earned by completing tasks to rank up your hero.<br>
-        💰 <strong>Gold:</strong> Used for custom real-life book & reading rewards.<br>
-        🛡️ <strong>Valor:</strong> Earned to strike down weekly bosses.<br>
-        🗺️ <strong>World Map:</strong> Visit biomes daily to scout bonus Gold and XP!
+        💰 <strong>Gold:</strong> Earned through training and scouting biomes.<br>
+        🛡️ <strong>Valor:</strong> Earned to strike down weekly trial bosses.<br>
+        🗺️ <strong>World Map:</strong> Visit biomes daily to scout terrain and uncover resources!
       </div>
     </section>
 
@@ -249,9 +235,9 @@
         </div>
       </div>
 
-      <div class="section-title">Add Custom Quest / Chore</div>
+      <div class="section-title">Add Custom Quest</div>
       <div class="input-row">
-        <input type="text" id="customChoreInput" placeholder="Add a custom task...">
+        <input type="text" id="customChoreInput" placeholder="Add custom task...">
         <button class="btn btn-gold" onclick="addCustomChore()">Add</button>
       </div>
 
@@ -262,7 +248,7 @@
     <!-- WORLD MAP -->
     <section class="view" id="view-map">
       <div class="section-title">Interactive World Map — Ashfall Realm</div>
-      <p style="font-size:12px; font-family:'IBM Plex Mono',monospace; color:#a99bd6; margin-bottom:12px;">Click 'Scout' on unlocked biomes once per day to collect bonus resources and clear the fog!</p>
+      <p style="font-size:12px; font-family:'IBM Plex Mono',monospace; color:#a99bd6; margin-bottom:12px;">Explore territories across the realm. Click 'Scout Area' once per day to collect bonus resources!</p>
       <div class="map-grid" id="mapGrid"></div>
     </section>
 
@@ -271,10 +257,10 @@
       <div class="section-title">Hero Status & Inventory</div>
       <div class="npc-card">
         <div class="npc-head">
-          <div class="npc-avatar mentor">🛡️</div>
+          <div class="npc-avatar">🛡️</div>
           <div><div class="npc-name">Rosalie</div><div class="npc-role">LEVEL 1 SCAVENGER</div></div>
         </div>
-        <div class="npc-line">Keep completing your weekly blocks and dinner rotation with Mom to unlock epic gear!</div>
+        <div class="npc-line">Keep completing your weekly blocks and your dinner rotation with Mom to unlock epic gear!</div>
       </div>
     </section>
 
@@ -295,10 +281,10 @@
 (function(){
   "use strict";
 
-  // Alternating blocks calculation (switches every Sunday)
+  // Alternating blocks calculation (switches every Sunday, Block A active reference)
   function getCurrentBlock() {
     const now = new Date();
-    const refDate = new Date(2026, 8, 6); // Sept 6, 2026 reference Sunday
+    const refDate = new Date(2026, 8, 6); // Sept 6, 2026 reference Sunday (Block A)
     const diffTime = Math.abs(now - refDate);
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
     const diffWeeks = Math.floor(diffDays / 7);
@@ -317,7 +303,7 @@
       "PERSON-SPECIFIC: Help Mom make dinner start to finish 1 day a week (plan day every Sunday)"
     ],
     B: [
-      "Unload dishwasher and clean food trap",
+      "Unload dishwasher and clean food trap daily",
       "Tineco vacuum: dining room, kitchen, living room, bathroom, mud trail, hallway (min 10 min)",
       "Sort laundry into baskets, fold towels/square items, return baskets to shelf",
       "Take main garbage out when full & to curb Thursday night",
@@ -373,7 +359,7 @@
     const block = getCurrentBlock();
     document.getElementById('blockLabel').textContent = "BLOCK " + block;
 
-    // Render Chores (No delete button as requested!)
+    // Render Chores
     const taskListEl = document.getElementById('taskList');
     taskListEl.innerHTML = "";
     const dayKey = todayKey();
